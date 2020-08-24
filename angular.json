@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "respezy-app"
+    }
+  },
+  "defaultProject": "respezy-app",
+  "cli": {
+    "analytics": false
+  }
 }
