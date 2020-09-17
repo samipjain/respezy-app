@@ -1,0 +1,64 @@
+<div class="row" style="margin:3em;">
+    <div class="col-md-6">
+        <div class="col-md-12" style="margin-top:3em;">
+          <canvas #barChart>{{ chart }}</canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-12 card">
+        <div class="card-body" style="text-align:center">
+          <h1>Score</h1>
+          <h1>{{ score }}%</h1>
+        </div>
+      </div>
+      <form class="col-md-12" #activityForm="ngForm" (ngSubmit)="onSubmit(activityForm)" style="margin-top:3em;">
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Location</label>
+          <div class="col-sm-8">
+            <select #locationSelected class="form-control" name="location" [(ngModel)]="activity.location" (change)="onSelect(locationSelected.value)">
+              <option *ngFor="let l of locations" [value]="l.id">{{ places[l.id] }}</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Location</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="other_location" [(ngModel)]="activity.other_location" />
+          </div>
+        </div> -->
+
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Available Slots</label>
+          <div class="col-sm-8">
+            <select class="form-control" name="available_slots" [(ngModel)]="activity.available_slots">
+              <option *ngFor="let slot of available_slots_list" [value]="slot">{{ available_slots[slot] }}</option>
+              <!-- <option [ngValue]="1">9:00 AM - 9:30 AM</option>
+              <option [ngValue]="2">9:30 AM - 10:00 AM</option>
+              <option [ngValue]="3">1:00 PM - 2:00 PM</option> -->
+            </select>
+          </div>
+        </div>
+
+        <input type="submit" class="btn col-sm-12" value="Submit" style="background-color: #f26a5a !important; color: white"/>
+      </form>
+      <div class="col-md-12" style="margin-top:3em;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Location</th>
+              <th scope="col">Slot</th>
+              <th scope="col">Risk</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of activities">
+              <td>{{ a.location }}</td>
+              <td>{{ a.available_slots }}</td>
+              <td>{{ a.score }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
